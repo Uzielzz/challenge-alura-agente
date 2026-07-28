@@ -30,7 +30,7 @@ challenge-alura-agente/
     ├── Manual de Proveedores y Política de Compras.pdf
     └── Preguntas Frecuentes (FAQ).pdf
 ```
-
+---
 ## 🛠️ Requisitos e Instalación
 1. Clona este repositorio:
 ```bash
@@ -46,26 +46,78 @@ Crea un archivo .env en la raíz del proyecto y agrega tu API Key de Gemini:
 ```bash
 GEMINI_API_KEY="TU_API_KEY_AQUI"
 ```
+---
 ## 💡 Uso del Agente
-​Para iniciar el chatbot interactivo en la terminal, ejecuta:
-```bash
-python agente.py
-```
-Ejemplo de interacción:
-```bash
-INICIANDO SCRIPT
-Cargando el documento: Reglamento.pdf...
-¡Documento cargado y procesado exitosamente!
 
-CHATBOT DE TERMINAL INICIADO
-Escribe tu pregunta sobre el documento. Escribe 'salir' para terminar.
+El agente se encuentra desplegado y listo para usarse en la nube a través de **Streamlit Cloud**.
 
-Tú: ¿Cuál es la política de devoluciones?
-Agente: [Respuesta basada estrictamente en la documentación]
-```
-## ⚙️ Tecnologías Utilizadas
-​Lenguaje: Python 3.x
-​IA: Google Gemini API (google-genai)
-​Librerías: pypdf, python-dotenv
+### 🌐 Opción 1: Probar la aplicación en la web (Recomendado)
+
+1. Accede a la aplicación desplegada mediante el enlace directo:
+   👉 **[https://7crug5.streamlit.app](https://7crug5.streamlit.app)**
+
+2. Una vez cargada la página, la interfaz confirmará automáticamente la lectura del documento PDF de referencia (`Preguntas Frecuentes (FAQ)`).
+
+3. Escribe tu pregunta en la barra inferior de chat ("*Escribe tu pregunta aquí...*") y presiona **Enter** o el botón de enviar.
+
+---
+
+### 💻 Opción 2: Ejecución Local en Terminal
+
+Si prefieres ejecutar el proyecto de forma local en tu máquina:
+
+1. Ejecuta la aplicación de Streamlit con el siguiente comando:
+    
+   ```bash
+   streamlit run agente.py
+2. Se abrirá automáticamente una pestaña en tu navegador local (http://localhost:8501) con la interfaz interactiva.
+---
+### ❓ Preguntas de prueba sugeridas
+​Puedes utilizar las siguientes consultas para verificar que el agente responde correctamente basándose de forma estricta en la documentación oficial:
+
+​Horarios:``` ¿Cuáles son los horarios de operación de Mercado Central 24h? ```
+
+​Ubicaciones:``` ¿Dónde están ubicadas las sucursales? ```
+
+​Membresías:```¿Necesito una membresía para comprar en la tienda? ```
+
+​Devoluciones:```¿Cuál es la política para la devolución de productos? ```
+
+​Métodos de pago:``` ¿Qué métodos de pago son aceptados? ```
+
+---
+
+## 📸 Demostración de la Aplicación Desplegada
+
+Así se ve la interfaz del bot respondiendo consultas en tiempo real dentro de Streamlit Cloud:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
