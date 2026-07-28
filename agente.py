@@ -16,29 +16,38 @@ if not api_key:
 
 client = genai.Client(api_key=api_key)
 
-# 2. Nombre EXACTO de tu PDF
-pdf_path = "Preguntas Frecuentes (FAQ) - Mercado Central 24h (México).pdf"
-
+# 2. Búsqueda automática del archivo PDF de FAQ
 @st.cache_data
-def cargar_documento(ruta):
-    if not os.path.exists(ruta):
-        return None
+def cargar_documento_faq():
+    archivos = os.listdir('.')
+    # Busca un archivo que sea .pdf y contenga "FAQ" o "Preguntas" en su nombre
+    pdf_faq = next((f for f in archivos if f.endswith('.pdf') and ("FAQ" in f or "Preguntas" in f)), None)
+    
+    if not pdf_faq:
+        # Si no encuentra por FAQ, toma el primer PDF disponible
+        pdf_faq = next((f for f in archivos if f.endswith('.pdf')), None)
+        
+    if not pdf_faq:
+        return None, "No se encontró ningún archivo PDF en la carpeta."
+
     try:
-        reader = PdfReader(ruta)
+        reader = PdfReader(pdf_faq)
         texto = ""
         for page in reader.pages:
             extraido = page.extract_text()
             if extraido:
                 texto += extraido + "\n"
-        return texto
+        return texto, pdf_faq
     except Exception as e:
-        return None
+        return None, str(e)
 
-document_text = cargar_documento(pdf_path)
+document_text, nombre_pdf = cargar_documento_faq()
 
 if not document_text:
-    st.error(f"❌ No se pudo encontrar o leer el archivo '{pdf_path}'. Revisa que el nombre en GitHub sea exacto.")
+    st.error(f"❌ Error al cargar el documento: {nombre_pdf}")
     st.stop()
+else:
+    st.caption(f"📄 Documento cargado: **{nombre_pdf}**")
 
 # 3. Instrucciones del sistema
 system_instruction = (
@@ -70,7 +79,7 @@ if prompt := st.chat_input("Escribe tu pregunta aquí..."):
 {system_instruction}
 
 [DOCUMENTO DE REFERENCIA]
-{document_text}
+{document_text[:15000]}
 [FIN DEL DOCUMENTO]
 
 Pregunta del usuario: {prompt}
@@ -89,3 +98,4 @@ Pregunta del usuario: {prompt}
                 st.session_state.messages.append({"role": "assistant", "content": respuesta_texto})
             except Exception as e:
                 st.error(f"Error al generar la respuesta: {e}")
+
