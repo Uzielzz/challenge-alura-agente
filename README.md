@@ -90,6 +90,8 @@ Si prefieres ejecutar el proyecto de forma local en tu máquina:
 ## 📸 Demostración de la Aplicación Desplegada
 
 Así se ve la interfaz del bot respondiendo consultas en tiempo real dentro de Streamlit Cloud:
+![Demo del Agente en Streamlit](demo.jpg)
+
 
 
 
