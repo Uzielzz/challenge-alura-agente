@@ -92,6 +92,12 @@ Si prefieres ejecutar el proyecto de forma local en tu máquina:
 Así se ve la interfaz del bot respondiendo consultas en tiempo real dentro de Streamlit Cloud:
 ![Demo del Agente en Streamlit](demooriginal.jpg)
 
+## ⚙️ Tecnologías Utilizadas
+
+* **Lenguaje:** Python 3.4
+* **Modelo IA:** Google Gemini API (`google-genai` - `gemini-flash-latest`)
+* **Procesamiento de PDF:** `pypdf`
+* **Interfaz Web & Deploy:** Streamlit & Streamlit Cloud
 
 
 
